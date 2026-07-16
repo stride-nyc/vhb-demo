@@ -1,12 +1,13 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MapComponent } from './map/map';
 import { ApiService } from './api.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatToolbarModule, MapComponent],
+  imports: [RouterOutlet, MatToolbarModule, MatGridListModule, MapComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

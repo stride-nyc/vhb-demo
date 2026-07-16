@@ -2,11 +2,13 @@
   <span>VHB</span>
 </mat-toolbar>
 
-<div class="layout">
-  <aside class="info-panel">
-    <router-outlet />
-  </aside>
-  <div class="map-panel">
+<mat-grid-list cols="2" rowHeight="fit" class="content-grid">
+  <mat-grid-tile>
+    <div class="info-panel">
+      <router-outlet />
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
     <app-map />
-  </div>
-</div>
+  </mat-grid-tile>
+</mat-grid-list>

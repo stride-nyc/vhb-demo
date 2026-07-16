@@ -40,17 +40,24 @@ describe('App', () => {
     expect(el.querySelector('mat-toolbar')).toBeTruthy();
   });
 
-  it('should render the map panel', () => {
+  it('should render two grid tiles', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     const el: HTMLElement = fixture.nativeElement;
-    expect(el.querySelector('.map-panel')).toBeTruthy();
+    expect(el.querySelectorAll('mat-grid-tile').length).toBe(2);
   });
 
-  it('should render the info panel', () => {
+  it('should render the info panel inside the first tile', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     const el: HTMLElement = fixture.nativeElement;
-    expect(el.querySelector('.info-panel')).toBeTruthy();
+    expect(el.querySelector('mat-grid-tile .info-panel')).toBeTruthy();
+  });
+
+  it('should render the map inside the second tile', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    const el: HTMLElement = fixture.nativeElement;
+    expect(el.querySelector('mat-grid-tile app-map')).toBeTruthy();
   });
 });

@@ -8,21 +8,23 @@ mat-toolbar {
   flex-shrink: 0;
 }
 
-.layout {
-  display: flex;
+.content-grid {
   flex: 1;
-  overflow: hidden;
+  min-height: 0;
+
+  // mat-grid-tile centers its content by default; stretch it so both panels fill the tile
+  ::ng-deep .mat-grid-tile-content {
+    align-items: stretch;
+    justify-content: stretch;
+    padding: 0;
+  }
 }
 
 .info-panel {
-  width: 380px;
-  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
   overflow-y: auto;
   border-right: 1px solid var(--mat-sys-outline-variant);
   background: var(--mat-sys-surface-container-low);
-}
-
-.map-panel {
-  flex: 1;
-  position: relative;
+  box-sizing: border-box;
 }
