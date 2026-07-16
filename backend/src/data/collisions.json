@@ -1,0 +1,63 @@
+{
+  "2202633": {
+    "collisionId": 2202633,
+    "reportNumber": "9680-2023-02956",
+    "fileType": "R",
+    "district": 11,
+    "county": "SE",
+    "ir": 1,
+    "hwyRelated": true,
+    "locationComplete": null,
+    "updateDate": "2025-03-24",
+    "comment": "this is state hwy needs to be coded to the ramp EB off to El Cajon @ 13,650 Area 1 any questions please come see me.",
+    "additionalPartyCount": 0,
+    "soeComplete": null,
+    "parties": [
+      {
+        "party": 1,
+        "primaryObject": "16", "primaryObjectLoc": "B",
+        "other1Object": "V2", "other1Loc": null,
+        "other2Object": null,  "other2Loc": null,
+        "other3Object": null,  "other3Loc": null,
+        "vehHwyIndicator": 1, "partyType": "A", "movement": "R", "direction": "E",
+        "ccuMvmt": "x", "ccuDir": null
+      },
+      {
+        "party": 2,
+        "primaryObject": "*", "primaryObjectLoc": "*",
+        "other1Object": "V1", "other1Loc": null,
+        "other2Object": null,  "other2Loc": null,
+        "other3Object": null,  "other3Loc": null,
+        "vehHwyIndicator": 1, "partyType": "A", "movement": "A", "direction": "E",
+        "ccuMvmt": "x", "ccuDir": "A"
+      },
+      {
+        "party": 3,
+        "primaryObject": "*", "primaryObjectLoc": "*",
+        "other1Object": "V1", "other1Loc": "D",
+        "other2Object": null,  "other2Loc": null,
+        "other3Object": "V4", "other3Loc": "D",
+        "vehHwyIndicator": 1, "partyType": "A", "movement": "A", "direction": "E",
+        "ccuMvmt": "x", "ccuDir": "A"
+      },
+      {
+        "party": 4,
+        "primaryObject": "*", "primaryObjectLoc": "*",
+        "other1Object": "V3", "other1Loc": "E",
+        "other2Object": null,  "other2Loc": null,
+        "other3Object": null,  "other3Loc": null,
+        "vehHwyIndicator": 1, "partyType": "A", "movement": "A", "direction": "E",
+        "ccuMvmt": "x", "ccuDir": "A"
+      },
+      {
+        "party": 5,
+        "primaryObject": "*", "primaryObjectLoc": "*",
+        "other1Object": "V3", "other1Loc": "D",
+        "other2Object": null,  "other2Loc": null,
+        "other3Object": null,  "other3Loc": null,
+        "vehHwyIndicator": 1, "partyType": "A", "movement": "A", "direction": "E",
+        "ccuMvmt": "x", "ccuDir": "A"
+      }
+    ]
+  }
+}
