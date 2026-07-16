@@ -1,7 +1,12 @@
 <mat-toolbar color="primary">
   <span>VHB</span>
-  <span class="spacer"></span>
-  <a mat-button routerLink="/map">Map</a>
 </mat-toolbar>
 
-<router-outlet />
+<div class="layout">
+  <aside class="info-panel">
+    <router-outlet />
+  </aside>
+  <div class="map-panel">
+    <app-map />
+  </div>
+</div>
