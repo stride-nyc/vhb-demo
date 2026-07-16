@@ -60,4 +60,13 @@ describe('App', () => {
     const el: HTMLElement = fixture.nativeElement;
     expect(el.querySelector('mat-grid-tile app-map')).toBeTruthy();
   });
+
+  it('should render "Collision Information" card title in the left grid tile', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    const el: HTMLElement = fixture.nativeElement;
+    const leftTile = el.querySelector('mat-grid-tile');
+    expect(leftTile).withContext('left grid tile not found').toBeTruthy();
+    expect(leftTile!.textContent).toContain('Collision Information');
+  });
 });
