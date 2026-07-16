@@ -5,6 +5,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MapComponent } from './map/map';
 import { ApiService } from './api.service';
+import type { Collision } from './collision.types';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ export class App implements OnInit {
 
   message = signal<string>('Loading...');
   health = signal<string>('Checking...');
+  collision = signal<Collision | null>(null);
 
   ngOnInit(): void {
     this.apiService.getHello().subscribe({
@@ -26,6 +28,10 @@ export class App implements OnInit {
     this.apiService.getHealth().subscribe({
       next: (res) => this.health.set(`Status: ${res.status} — ${res.timestamp}`),
       error: () => this.health.set('Backend offline.')
+    });
+    this.apiService.getCollision('2202633').subscribe({
+      next: (res) => this.collision.set(res),
+      error: () => this.collision.set(null)
     });
   }
 }
