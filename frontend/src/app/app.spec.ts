@@ -48,11 +48,15 @@ const COLLISION_STUB: Collision = {
 function makeLeafletMock(): LeafletStatic {
   const map = jasmine.createSpyObj<LeafletMap>('Map', ['setView', 'remove']);
   map.setView.and.returnValue(map);
+  const marker = jasmine.createSpyObj('Marker', ['addTo', 'on']);
+  marker.addTo.and.returnValue(marker);
+  marker.on.and.returnValue(marker);
   return {
     map: jasmine.createSpy('map').and.returnValue(map),
     tileLayer: jasmine.createSpy('tileLayer').and.returnValue(
       jasmine.createSpyObj('TileLayer', ['addTo']),
     ),
+    marker: jasmine.createSpy('marker').and.returnValue(marker),
   } as unknown as LeafletStatic;
 }
 

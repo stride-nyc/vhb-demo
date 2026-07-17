@@ -1,5 +1,5 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
-import type { Map as LeafletMap, TileLayer } from 'leaflet';
+import type { Map as LeafletMap, TileLayer, Marker } from 'leaflet';
 import { MapComponent } from './map';
 import { LEAFLET, LeafletStatic } from './leaflet.token';
 
@@ -7,17 +7,22 @@ function makeLeafletMock(): {
   L: LeafletStatic;
   map: jasmine.SpyObj<LeafletMap>;
   tileLayer: jasmine.SpyObj<TileLayer>;
+  marker: jasmine.SpyObj<Marker>;
 } {
   const map = jasmine.createSpyObj<LeafletMap>('Map', ['setView', 'remove']);
   map.setView.and.returnValue(map);
   const tileLayer = jasmine.createSpyObj<TileLayer>('TileLayer', ['addTo']);
+  const marker = jasmine.createSpyObj<Marker>('Marker', ['addTo', 'on']);
+  marker.addTo.and.returnValue(marker);
+  marker.on.and.returnValue(marker);
 
   const L = {
     map: jasmine.createSpy('map').and.returnValue(map),
     tileLayer: jasmine.createSpy('tileLayer').and.returnValue(tileLayer),
+    marker: jasmine.createSpy('marker').and.returnValue(marker),
   } as unknown as LeafletStatic;
 
-  return { L, map, tileLayer };
+  return { L, map, tileLayer, marker };
 }
 
 describe('MapComponent', () => {
@@ -74,5 +79,29 @@ describe('MapComponent', () => {
     fixture.detectChanges();
     fixture.destroy();
     expect(mocks.map.remove).toHaveBeenCalledTimes(1);
+  });
+
+  it('should create a marker at the Los Angeles coordinates', () => {
+    fixture.detectChanges();
+    expect(mocks.L.marker).toHaveBeenCalledOnceWith([34.0522, -118.2437]);
+  });
+
+  it('should attach the marker to the map', () => {
+    fixture.detectChanges();
+    expect(mocks.marker.addTo).toHaveBeenCalledOnceWith(mocks.map);
+  });
+
+  it('should emit markerClicked with the collision ID when the marker is clicked', () => {
+    const emitted: string[] = [];
+    component.markerClicked.subscribe((id: string) => emitted.push(id));
+
+    fixture.detectChanges();
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const onArgs: any[] = mocks.marker.on.calls.mostRecent()?.args ?? [];
+    const clickCb: ((e: unknown) => void) | undefined = onArgs[1];
+    clickCb?.({});
+
+    expect(emitted).toEqual(['2202633']);
   });
 });

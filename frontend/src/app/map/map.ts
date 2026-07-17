@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnDestroy, ElementRef, ViewChild, inject } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, ElementRef, ViewChild, inject, Output, EventEmitter } from '@angular/core';
 import type { Map as LeafletMap } from 'leaflet';
 import { LEAFLET } from './leaflet.token';
 
@@ -10,6 +10,7 @@ import { LEAFLET } from './leaflet.token';
 })
 export class MapComponent implements AfterViewInit, OnDestroy {
   @ViewChild('mapContainer') mapContainer!: ElementRef;
+  @Output() markerClicked = new EventEmitter<string>();
 
   private L = inject(LEAFLET);
   private map!: LeafletMap;
@@ -21,6 +22,10 @@ export class MapComponent implements AfterViewInit, OnDestroy {
       maxZoom: 19,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(this.map);
+
+    this.L.marker([34.0522, -118.2437])
+      .addTo(this.map)
+      .on('click', () => this.markerClicked.emit('2202633'));
   }
 
   ngOnDestroy(): void {
