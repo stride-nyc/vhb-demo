@@ -5,36 +5,7 @@
 <mat-grid-list cols="2" rowHeight="fit" class="content-grid">
   <mat-grid-tile>
     <div class="info-panel">
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>Collision Information</mat-card-title>
-        </mat-card-header>
-        @if (collision(); as c) {
-          <mat-card-content>
-            <p><strong>ID:</strong> {{ c.collisionId }}</p>
-            <p><strong>Report #:</strong> {{ c.reportNumber }}</p>
-            <p><strong>File Type:</strong> {{ c.fileType }}</p>
-            <p><strong>District:</strong> {{ c.district }}</p>
-            <p><strong>County:</strong> {{ c.county }}</p>
-            <p><strong>IR:</strong> {{ c.ir }}</p>
-            <p><strong>Hwy Related:</strong> {{ c.hwyRelated }}</p>
-            <p><strong>Location Complete:</strong> {{ c.locationComplete ?? '—' }}</p>
-            <p><strong>Update Date:</strong> {{ c.updateDate }}</p>
-            <p><strong>Comment:</strong> {{ c.comment }}</p>
-            <p><strong>Additional Parties:</strong> {{ c.additionalPartyCount }}</p>
-            <p><strong>SOE Complete:</strong> {{ c.soeComplete ?? '—' }}</p>
-            @if (c.parties.length) {
-              <h3>Parties</h3>
-              @for (p of c.parties; track p.party) {
-                <div>
-                  <p><strong>Party {{ p.party }}:</strong> {{ p.partyType }} · {{ p.direction }} · {{ p.movement }}</p>
-                  <p><strong>Primary Object:</strong> {{ p.primaryObject }}{{ p.primaryObjectLoc ? ' @ ' + p.primaryObjectLoc : '' }}</p>
-                </div>
-              }
-            }
-          </mat-card-content>
-        }
-      </mat-card>
+      <app-collision-info [collision]="collision()" />
       <router-outlet />
     </div>
   </mat-grid-tile>

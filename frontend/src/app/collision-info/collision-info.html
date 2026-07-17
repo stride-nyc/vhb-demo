@@ -1,0 +1,30 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Collision Information</mat-card-title>
+  </mat-card-header>
+  @if (collision) {
+    <mat-card-content>
+      <p><strong>ID:</strong> {{ collision.collisionId }}</p>
+      <p><strong>Report #:</strong> {{ collision.reportNumber }}</p>
+      <p><strong>File Type:</strong> {{ collision.fileType }}</p>
+      <p><strong>District:</strong> {{ collision.district }}</p>
+      <p><strong>County:</strong> {{ collision.county }}</p>
+      <p><strong>IR:</strong> {{ collision.ir }}</p>
+      <p><strong>Hwy Related:</strong> {{ collision.hwyRelated }}</p>
+      <p><strong>Location Complete:</strong> {{ collision.locationComplete ?? '—' }}</p>
+      <p><strong>Update Date:</strong> {{ collision.updateDate }}</p>
+      <p><strong>Comment:</strong> {{ collision.comment }}</p>
+      <p><strong>Additional Parties:</strong> {{ collision.additionalPartyCount }}</p>
+      <p><strong>SOE Complete:</strong> {{ collision.soeComplete ?? '—' }}</p>
+      @if (collision.parties.length) {
+        <h3>Parties</h3>
+        @for (p of collision.parties; track p.party) {
+          <div>
+            <p><strong>Party {{ p.party }}:</strong> {{ p.partyType }} · {{ p.direction }} · {{ p.movement }}</p>
+            <p><strong>Primary Object:</strong> {{ p.primaryObject }}{{ p.primaryObjectLoc ? ' @ ' + p.primaryObjectLoc : '' }}</p>
+          </div>
+        }
+      }
+    </mat-card-content>
+  }
+</mat-card>

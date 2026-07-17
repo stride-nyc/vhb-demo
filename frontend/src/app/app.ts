@@ -2,14 +2,14 @@ import { Component, inject, signal, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
 import { MapComponent } from './map/map';
+import { CollisionInfoComponent } from './collision-info/collision-info';
 import { ApiService } from './api.service';
 import type { Collision } from './collision.types';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatToolbarModule, MatGridListModule, MatCardModule, MapComponent],
+  imports: [RouterOutlet, MatToolbarModule, MatGridListModule, CollisionInfoComponent, MapComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
