@@ -20,6 +20,12 @@ export class App implements OnInit {
   health = signal<string>('Checking...');
   collision = signal<Collision | null>(null);
 
+  onMarkerClicked(id: string): void {
+    this.apiService.getCollision(id).subscribe({
+      next: (res) => this.collision.set(res),
+    });
+  }
+
   ngOnInit(): void {
     this.apiService.getHello().subscribe({
       next: (res) => this.message.set(res.message),

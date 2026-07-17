@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import type { ComponentFixture } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { of } from 'rxjs';
@@ -8,6 +9,7 @@ import { LEAFLET, LeafletStatic } from './map/leaflet.token';
 import { ApiService } from './api.service';
 import type { Collision } from './collision.types';
 import { App } from './app';
+import { MapComponent } from './map/map';
 
 function makePartyStub(party: number, partyType: string) {
   return {
@@ -110,6 +112,7 @@ describe('App', () => {
 
 describe('App — initialization behavior', () => {
   let fixture: ComponentFixture<App>;
+  let component: App;
   let apiService: jasmine.SpyObj<ApiService>;
 
   beforeEach(async () => {
@@ -129,6 +132,7 @@ describe('App — initialization behavior', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(App);
+    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
@@ -139,4 +143,16 @@ describe('App — initialization behavior', () => {
   it('should not render the collision info card when no collision is loaded', () => {
     expect(fixture.nativeElement.querySelector('app-collision-info')).toBeNull();
   });
+
+  it('should call getCollision with the marker ID when onMarkerClicked fires', () => {
+    component.onMarkerClicked('2202633');
+    expect(apiService.getCollision).toHaveBeenCalledOnceWith('2202633');
+  });
+
+  it('should fetch collision when the map emits markerClicked', () => {
+    const mapEl = fixture.debugElement.query(By.directive(MapComponent));
+    mapEl.componentInstance.markerClicked.emit('2202633');
+    expect(apiService.getCollision).toHaveBeenCalledOnceWith('2202633');
+  });
+
 });
