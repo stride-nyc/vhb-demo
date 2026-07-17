@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import type { ComponentFixture } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { of } from 'rxjs';
@@ -100,43 +101,38 @@ describe('App', () => {
     expect(el.querySelector('mat-grid-tile app-map')).toBeTruthy();
   });
 
-  it('should render "Collision Information" card title in the left grid tile', () => {
-    const fixture = TestBed.createComponent(App);
+
+});
+
+describe('App — initialization behavior', () => {
+  let fixture: ComponentFixture<App>;
+  let apiService: jasmine.SpyObj<ApiService>;
+
+  beforeEach(async () => {
+    apiService = jasmine.createSpyObj<ApiService>('ApiService', [
+      'getHello', 'getHealth', 'getCollision',
+    ]);
+    apiService.getHello.and.returnValue(of({ message: 'ok' }));
+    apiService.getHealth.and.returnValue(of({ status: 'ok', timestamp: '2024-01-01' }));
+    apiService.getCollision.and.returnValue(of(COLLISION_STUB));
+
+    await TestBed.configureTestingModule({
+      imports: [App],
+      providers: [
+        { provide: ApiService, useValue: apiService },
+        { provide: LEAFLET, useValue: makeLeafletMock() },
+      ],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(App);
     fixture.detectChanges();
-    const el: HTMLElement = fixture.nativeElement;
-    const leftTile = el.querySelector('mat-grid-tile');
-    expect(leftTile).withContext('left grid tile not found').toBeTruthy();
-    expect(leftTile!.textContent).toContain('Collision Information');
   });
 
-  it('should display collision ID in the left grid tile after data loads', () => {
-    const apiService = TestBed.inject(ApiService);
-    const spy = spyOn(apiService, 'getCollision').and.returnValue(of(COLLISION_STUB));
-
-    const fixture = TestBed.createComponent(App);
-    fixture.detectChanges();
-
-    expect(spy).toHaveBeenCalledOnceWith('2202633');
-    const leftTile: HTMLElement | null = fixture.nativeElement.querySelector('mat-grid-tile');
-    expect(leftTile).withContext('left grid tile not found').toBeTruthy();
-    expect(leftTile!.textContent).toContain('2202633');
+  it('should not call getCollision during initialization', () => {
+    expect(apiService.getCollision).not.toHaveBeenCalled();
   });
 
-  it('should display all collision fields and party rows in the left grid tile', () => {
-    const apiService = TestBed.inject(ApiService);
-    spyOn(apiService, 'getCollision').and.returnValue(of(COLLISION_STUB));
-
-    const fixture = TestBed.createComponent(App);
-    fixture.detectChanges();
-
-    const leftTile: HTMLElement | null = fixture.nativeElement.querySelector('mat-grid-tile');
-    expect(leftTile).withContext('left grid tile not found').toBeTruthy();
-    const text = leftTile!.textContent ?? '';
-    expect(text).withContext('reportNumber').toContain('9680-2023-02956');
-    expect(text).withContext('county').toContain('MARIN');
-    expect(text).withContext('updateDate').toContain('2025-03-24');
-    expect(text).withContext('comment').toContain('test comment');
-    expect(text).withContext('party DRIVER').toContain('DRIVER');
-    expect(text).withContext('party PEDESTRIAN').toContain('PEDESTRIAN');
+  it('should not render the collision info card when no collision is loaded', () => {
+    expect(fixture.nativeElement.querySelector('app-collision-info')).toBeNull();
   });
 });

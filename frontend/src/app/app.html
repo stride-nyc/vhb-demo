@@ -5,7 +5,9 @@
 <mat-grid-list cols="2" rowHeight="fit" class="content-grid">
   <mat-grid-tile>
     <div class="info-panel">
-      <app-collision-info [collision]="collision()" />
+      @if (collision()) {
+        <app-collision-info [collision]="collision()" />
+      }
       <router-outlet />
     </div>
   </mat-grid-tile>

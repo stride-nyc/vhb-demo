@@ -29,9 +29,5 @@ export class App implements OnInit {
       next: (res) => this.health.set(`Status: ${res.status} — ${res.timestamp}`),
       error: () => this.health.set('Backend offline.')
     });
-    this.apiService.getCollision('2202633').subscribe({
-      next: (res) => this.collision.set(res),
-      error: () => this.collision.set(null)
-    });
   }
 }
