@@ -51,10 +51,11 @@ describe('CollisionInfoComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should render the "Collision Information" card title', () => {
+  it('should render the crash record header when a collision is provided', () => {
+    component.collision = COLLISION_STUB;
     fixture.detectChanges();
     const el: HTMLElement = fixture.nativeElement;
-    expect(el.textContent).toContain('Collision Information');
+    expect(el.textContent).toContain('Crash Record');
   });
 
   it('should render the collision ID when a collision is provided', () => {
@@ -71,8 +72,7 @@ describe('CollisionInfoComponent', () => {
     expect(text).withContext('reportNumber').toContain('9680-2023-02956');
     expect(text).withContext('county').toContain('MARIN');
     expect(text).withContext('updateDate').toContain('2025-03-24');
-    expect(text).withContext('comment').toContain('test comment');
-    expect(text).withContext('party DRIVER').toContain('DRIVER');
+expect(text).withContext('party DRIVER').toContain('DRIVER');
     expect(text).withContext('party PEDESTRIAN').toContain('PEDESTRIAN');
   });
 });

@@ -1,30 +1,78 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Collision Information</mat-card-title>
-  </mat-card-header>
+<div class="crash-record">
   @if (collision) {
-    <mat-card-content>
-      <p><strong>ID:</strong> {{ collision.collisionId }}</p>
-      <p><strong>Report #:</strong> {{ collision.reportNumber }}</p>
-      <p><strong>File Type:</strong> {{ collision.fileType }}</p>
-      <p><strong>District:</strong> {{ collision.district }}</p>
-      <p><strong>County:</strong> {{ collision.county }}</p>
-      <p><strong>IR:</strong> {{ collision.ir }}</p>
-      <p><strong>Hwy Related:</strong> {{ collision.hwyRelated }}</p>
-      <p><strong>Location Complete:</strong> {{ collision.locationComplete ?? '—' }}</p>
-      <p><strong>Update Date:</strong> {{ collision.updateDate }}</p>
-      <p><strong>Comment:</strong> {{ collision.comment }}</p>
-      <p><strong>Additional Parties:</strong> {{ collision.additionalPartyCount }}</p>
-      <p><strong>SOE Complete:</strong> {{ collision.soeComplete ?? '—' }}</p>
-      @if (collision.parties.length) {
-        <h3>Parties</h3>
-        @for (p of collision.parties; track p.party) {
-          <div>
-            <p><strong>Party {{ p.party }}:</strong> {{ p.partyType }} · {{ p.direction }} · {{ p.movement }}</p>
-            <p><strong>Primary Object:</strong> {{ p.primaryObject }}{{ p.primaryObjectLoc ? ' @ ' + p.primaryObjectLoc : '' }}</p>
-          </div>
-        }
-      }
-    </mat-card-content>
+    <div class="crash-header">
+      <div class="crash-id-row">
+        <span class="crash-section-label">Crash Record</span>
+        <span class="crash-id">{{ collision.collisionId }}</span>
+      </div>
+      <div class="crash-subheader">
+        {{ collision.county }} County &bull; District {{ collision.district }} &bull; Updated {{ collision.updateDate }}
+      </div>
+    </div>
+
+    <div class="crash-fields">
+      <div class="field-row">
+        <span class="field-label">Report #</span>
+        <span class="field-value">{{ collision.reportNumber }}</span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">File Type</span>
+        <span class="field-value">{{ collision.fileType }}</span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">IR</span>
+        <span class="field-value">{{ collision.ir }}</span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">Hwy Related</span>
+        <span class="field-value">
+          <span class="badge" [class.badge--yes]="collision.hwyRelated" [class.badge--no]="!collision.hwyRelated">
+            {{ collision.hwyRelated ? 'Yes' : 'No' }}
+          </span>
+        </span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">Location Complete</span>
+        <span class="field-value">{{ collision.locationComplete ?? '—' }}</span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">SOE Complete</span>
+        <span class="field-value">{{ collision.soeComplete ?? '—' }}</span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">Additional Parties</span>
+        <span class="field-value">{{ collision.additionalPartyCount }}</span>
+      </div>
+    </div>
+
+    @if (collision.parties.length) {
+      <div class="crash-section">
+        <div class="section-heading">Parties ({{ collision.parties.length }})</div>
+        <table class="parties-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Type</th>
+              <th>Dir</th>
+              <th>Movement</th>
+              <th>Primary Obj</th>
+              <th>Loc</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (p of collision.parties; track p.party) {
+              <tr>
+                <td>{{ p.party }}</td>
+                <td>{{ p.partyType }}</td>
+                <td>{{ p.direction }}</td>
+                <td>{{ p.movement }}</td>
+                <td>{{ p.primaryObject }}</td>
+                <td>{{ p.primaryObjectLoc ?? '—' }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
   }
-</mat-card>
+</div>
