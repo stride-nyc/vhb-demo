@@ -3,7 +3,9 @@
     "allow": [
       "Bash(ng version:*)",
       "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); proj=list\\(d['projects'].values\\(\\)\\)[0]; print\\(json.dumps\\(proj['architect']['build']['options'], indent=2\\)\\)\")",
-      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(list\\(d['projects'].keys\\(\\)\\)\\)\")"
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(list\\(d['projects'].keys\\(\\)\\)\\)\")",
+      "Bash(grep '^\\\\$' /Users/jonathandrew/dev/vhb/vhb/frontend/node_modules/@angular/material/core/theming/_palettes.scss)",
+      "Bash(node --stack-trace-limit=50 node_modules/.bin/cypress run)"
     ]
   }
 }
