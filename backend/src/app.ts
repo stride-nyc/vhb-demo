@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
-import { COLLISIONS } from './data/collisions';
+import { COLLISIONS } from './data/collision-store';
 
 const app = express();
 

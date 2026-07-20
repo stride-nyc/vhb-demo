@@ -87,13 +87,13 @@
 }
 
 .badge--yes {
-  background: #c8e6c9;
-  color: #1b5e20;
+  background: color-mix(in srgb, var(--ma-success) 15%, white);
+  color: color-mix(in srgb, var(--ma-success) 70%, black);
 }
 
 .badge--no {
-  background: #ffcdd2;
-  color: #b71c1c;
+  background: color-mix(in srgb, var(--ma-danger) 12%, white);
+  color: color-mix(in srgb, var(--ma-danger) 80%, black);
 }
 
 // ── Sections (Comment, Parties) ───────────────────────────────────────────────

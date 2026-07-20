@@ -1,5 +1,15 @@
 import request from 'supertest';
 import app from '../app';
+import { COLLISIONS } from '../data/collision-store';
+
+describe('collision-store', () => {
+  it('exports COLLISIONS as a defined, non-empty object', () => {
+    // Guards against the naming conflict where collisions.ts shadowed by
+    // collisions.json caused COLLISIONS to resolve as undefined at runtime.
+    expect(COLLISIONS).toBeDefined();
+    expect(Object.keys(COLLISIONS).length).toBeGreaterThan(0);
+  });
+});
 
 describe('GET /api/collision/:id', () => {
   it('returns 404 for an unknown collision id', async () => {

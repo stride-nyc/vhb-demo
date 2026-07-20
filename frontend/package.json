@@ -7,8 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "e2e": "cypress open",
-    "e2e:run": "cypress run"
+    "e2e": "playwright test",
+    "e2e:run": "playwright test --reporter=list"
   },
   "private": true,
   "packageManager": "npm@11.16.0",
@@ -30,8 +30,8 @@
     "@angular/build": "^22.0.7",
     "@angular/cli": "^22.0.7",
     "@angular/compiler-cli": "^22.0.0",
+    "@playwright/test": "^1.52.0",
     "@types/jasmine": "^6.0.0",
-    "cypress": "^15.18.1",
     "jasmine-core": "^6.3.0",
     "jsdom": "^28.0.0",
     "karma": "^6.4.4",
@@ -43,7 +43,5 @@
     "typescript": "~6.0.2",
     "vitest": "^4.0.8"
   },
-  "allowScripts": {
-    "cypress@15.18.1": true
-  }
+  "allowScripts": {}
 }

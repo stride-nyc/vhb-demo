@@ -1,0 +1,58 @@
+// Massachusetts Design System — CSS custom properties
+// Emitted on :root so every component can use them without @use.
+//
+// Usage in any SCSS or inline style:
+//   color: var(--ma-primary);
+//   background: var(--ma-success);
+//   font-family: var(--ma-font);
+
+@use 'ma-tokens' as ma;
+
+:root {
+  // Brand
+  --ma-primary:             #{ma.$bay-blue};
+  --ma-primary-hover:       #{ma.$bay-blue-hover};
+  --ma-primary-active:      #{ma.$bay-blue-active};
+  --ma-primary-dark:        #{ma.$bay-blue-dark};
+  --ma-on-primary:          #ffffff;
+
+  --ma-accent:              #{ma.$berkshires-green};
+  --ma-accent-hover:        #{ma.$berkshires-green-hover};
+  --ma-accent-active:       #{ma.$berkshires-green-active};
+  --ma-on-accent:           #ffffff;
+
+  --ma-highlight:           #{ma.$duckling-yellow};
+  --ma-neutral:             #{ma.$granite-gray};
+  --ma-cranberry:           #{ma.$independence-cranberry};
+
+  // Utility / semantic
+  --ma-success:             #{ma.$success-green};
+  --ma-warning:             #{ma.$warning-yellow};
+  --ma-danger:              #{ma.$danger-red};
+  --ma-focus:               #{ma.$focus-light};
+  --ma-focus-on-dark:       #{ma.$focus-dark};
+  --ma-disabled-bg:         #{ma.$disabled-bg};
+
+  // Typography
+  --ma-font:                #{ma.$font-family};
+  --ma-weight-regular:      #{ma.$weight-regular};
+  --ma-weight-semibold:     #{ma.$weight-semibold};
+  --ma-weight-bold:         #{ma.$weight-bold};
+  --ma-line-height-body:    #{ma.$line-height-body};
+
+  // Type scale
+  --ma-type-175:  #{ma.$type-175};
+  --ma-type-200:  #{ma.$type-200};
+  --ma-type-225:  #{ma.$type-225};
+  --ma-type-250:  #{ma.$type-250};
+  --ma-type-300:  #{ma.$type-300};
+  --ma-type-350:  #{ma.$type-350};
+  --ma-type-400:  #{ma.$type-400};
+  --ma-type-450:  #{ma.$type-450};
+  --ma-type-500:  #{ma.$type-500};
+
+  // Corner radius
+  --ma-radius-sm:  #{ma.$radius-sm};
+  --ma-radius-md:  #{ma.$radius-md};
+  --ma-radius-lg:  #{ma.$radius-lg};
+}

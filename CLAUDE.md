@@ -40,18 +40,24 @@ Follow the global CLAUDE.md working agreements. Pushing and committing require e
 
 ## Build & Test
 
-_Add your build and test commands here_
-
 ```bash
-# Example:
-# npm install
-# npm test
+cd frontend && npx ng test --watch=false   # full frontend suite
+cd frontend && npx ng test --include='**/path/to/file.spec.ts' --watch=false  # single spec
 ```
 
 ## Architecture Overview
 
-_Add a brief overview of your project architecture_
+Angular 22 SPA (`frontend/`) + Express/TypeScript API (`backend/`). No database yet.
+
+- Root component: `frontend/src/app/app.ts`
+- Map feature: `frontend/src/app/map/`
+- Collision info panel: `frontend/src/app/collision-info/`
+- Backend entry: `backend/src/index.ts`
+- Collision data: `backend/src/data/collisions.json`
 
 ## Conventions & Patterns
 
-_Add your project-specific conventions here_
+Follow `/afb-tdd` (red-green-refactor) for all feature work. See `.claude/skills/afb-tdd/` for the full loop.
+
+---
+

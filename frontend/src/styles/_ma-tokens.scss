@@ -1,0 +1,60 @@
+// Massachusetts Design System — design tokens
+// Source: https://www.mass.gov/style-guide
+//
+// Import this file in component SCSS with:
+//   @use '../../styles/ma-tokens' as ma;
+// Then reference as: ma.$bay-blue, ma.$radius-lg, etc.
+//
+// For runtime CSS custom properties (no import needed), see _ma-theme.scss.
+
+// ── Brand colors ─────────────────────────────────────────────────────────────
+
+$bay-blue:              #14558F;
+$bay-blue-hover:        #4377A5;
+$bay-blue-active:       #104472;
+$bay-blue-dark:         #0A2B48;
+
+$berkshires-green:      #32784E;
+$berkshires-green-hover: #388557;
+$berkshires-green-active: #275D3D;
+$berkshires-green-dark: #1C432C;
+
+$duckling-yellow:       #F6C51B;
+$independence-cranberry: #680A1D;
+$granite-gray:          #535353;
+
+// ── Utility / semantic colors ─────────────────────────────────────────────────
+
+$success-green:         #24A850;
+$warning-yellow:        #F6B622;
+$danger-red:            #CD0D0D;
+$focus-light:           #0088FF;
+$focus-dark:            #B2DBFF;
+
+$disabled-bg:           #F0F0F0;
+
+// ── Typography ────────────────────────────────────────────────────────────────
+
+$font-family:           'Noto Sans', sans-serif;
+$weight-regular:        400;
+$weight-semibold:       600;
+$weight-bold:           700;
+$line-height-body:      1.8;
+
+// ── Type scale (rem) — 4px base unit ─────────────────────────────────────────
+
+$type-175:  0.875rem;   // 14px — small labels
+$type-200:  1rem;       // 16px — body min
+$type-225:  1.125rem;   // 18px
+$type-250:  1.25rem;    // 20px
+$type-300:  1.5rem;     // 24px
+$type-350:  1.75rem;    // 28px
+$type-400:  2rem;       // 32px
+$type-450:  2.25rem;    // 36px
+$type-500:  2.5rem;     // 40px
+
+// ── Corner radius — 4px unit system ──────────────────────────────────────────
+
+$radius-sm:  2px;   // ≤24px elements
+$radius-md:  4px;   // 25–43px elements
+$radius-lg:  8px;   // ≥44px elements (buttons, cards, inputs, alerts)
