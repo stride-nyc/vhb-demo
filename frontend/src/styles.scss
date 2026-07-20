@@ -34,6 +34,11 @@ html {
   --mat-sys-on-error:             #ffffff;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--ma-font);
+  font-weight: var(--ma-weight-semibold);
+}
+
 body {
   color-scheme: light;
   background-color: var(--mat-sys-surface);
