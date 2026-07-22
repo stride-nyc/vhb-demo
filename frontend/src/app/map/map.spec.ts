@@ -20,6 +20,12 @@ function makeLeafletMock(): {
     map: jasmine.createSpy('map').and.returnValue(map),
     tileLayer: jasmine.createSpy('tileLayer').and.returnValue(tileLayer),
     marker: jasmine.createSpy('marker').and.returnValue(marker),
+    Icon: {
+      Default: {
+        prototype: {} as Record<string, unknown>,
+        mergeOptions: jasmine.createSpy('mergeOptions'),
+      },
+    },
   } as unknown as LeafletStatic;
 
   return { L, map, tileLayer, marker };
