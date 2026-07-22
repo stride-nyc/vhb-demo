@@ -49,4 +49,19 @@ describe('ApiService', () => {
       expect(result).toEqual(COLLISION_STUB);
     });
   });
+
+  describe('saveComment()', () => {
+    it('sends PATCH to /api/collision/:id/comment with the comment body and emits the response', () => {
+      let result: { comment: string } | undefined;
+
+      service.saveComment('2202633', 'new note').subscribe(r => (result = r));
+
+      const req = httpMock.expectOne('http://localhost:3000/api/collision/2202633/comment');
+      expect(req.request.method).toBe('PATCH');
+      expect(req.request.body).toEqual({ comment: 'new note' });
+      req.flush({ comment: 'new note' });
+
+      expect(result).toEqual({ comment: 'new note' });
+    });
+  });
 });
