@@ -74,5 +74,13 @@
         </table>
       </div>
     }
+
+    <div class="coding-action-bar">
+      <app-coding-comment-button
+        [collisionId]="collision.collisionId.toString()"
+        [comment]="collision.comment"
+        (commentSaved)="onCommentSaved($event)"
+      />
+    </div>
   }
 </div>

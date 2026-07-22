@@ -1,4 +1,6 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import type { Collision, Party } from '../collision.types';
 import { CollisionInfoComponent } from './collision-info';
 
@@ -45,6 +47,7 @@ describe('CollisionInfoComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CollisionInfoComponent],
+      providers: [provideHttpClient(), provideHttpClientTesting()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CollisionInfoComponent);
@@ -74,5 +77,18 @@ describe('CollisionInfoComponent', () => {
     expect(text).withContext('updateDate').toContain('2025-03-24');
 expect(text).withContext('party DRIVER').toContain('DRIVER');
     expect(text).withContext('party PEDESTRIAN').toContain('PEDESTRIAN');
+  });
+
+  it('renders app-coding-comment-button when a collision is provided', () => {
+    component.collision = COLLISION_STUB;
+    fixture.detectChanges();
+    const el: HTMLElement | null = fixture.nativeElement.querySelector('app-coding-comment-button');
+    expect(el).not.toBeNull();
+  });
+
+  it('updates collision.comment when onCommentSaved is called', () => {
+    component.collision = { ...COLLISION_STUB, comment: 'old note' };
+    component.onCommentSaved('new note');
+    expect(component.collision.comment).toBe('new note');
   });
 });
