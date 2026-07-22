@@ -25,3 +25,27 @@ describe('GET /api/collision/:id', () => {
     expect(res.body.parties).toHaveLength(5);
   });
 });
+
+describe('PATCH /api/collision/:id/comment', () => {
+  it('returns 200 with the updated comment for a known collision', async () => {
+    const res = await request(app)
+      .patch('/api/collision/2202633/comment')
+      .send({ comment: 'new note' });
+    expect(res.status).toBe(200);
+    expect(res.body.comment).toBe('new note');
+  });
+
+  it('returns 404 for an unknown collision id', async () => {
+    const res = await request(app)
+      .patch('/api/collision/9999/comment')
+      .send({ comment: 'new note' });
+    expect(res.status).toBe(404);
+  });
+
+  it('returns 400 when comment is not a string', async () => {
+    const res = await request(app)
+      .patch('/api/collision/2202633/comment')
+      .send({ comment: 123 });
+    expect(res.status).toBe(400);
+  });
+});
