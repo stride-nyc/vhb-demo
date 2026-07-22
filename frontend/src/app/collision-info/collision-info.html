@@ -43,6 +43,16 @@
         <span class="field-label">Additional Parties</span>
         <span class="field-value">{{ collision.additionalPartyCount }}</span>
       </div>
+      <div class="field-row">
+        <span class="field-label">Coding Comment</span>
+        <span class="field-value">
+          <button
+            class="comments-btn"
+            [class.comments-btn--has-comment]="hasComment"
+            (click)="openDialog()"
+          >Comments</button>
+        </span>
+      </div>
     </div>
 
     @if (collision.parties.length) {
@@ -72,6 +82,23 @@
             }
           </tbody>
         </table>
+      </div>
+    }
+
+    @if (dialogOpen) {
+      <div class="comments-overlay" (click)="closeDialog()">
+        <div class="comments-dialog" (click)="$event.stopPropagation()">
+          <div class="comments-dialog-header">Coding Comment</div>
+          <textarea
+            class="comments-textarea"
+            [(ngModel)]="draftComment"
+            placeholder="Enter coding comment..."
+          ></textarea>
+          <div class="comments-dialog-actions">
+            <button class="btn btn--secondary" (click)="closeDialog()">Cancel</button>
+            <button class="btn btn--primary" (click)="saveComment()">Ok</button>
+          </div>
+        </div>
       </div>
     }
   }

@@ -19,4 +19,11 @@ export class ApiService {
   getCollision(id: string): Observable<Collision> {
     return this.http.get<Collision>(`${this.baseUrl}/collision/${id}`);
   }
+
+  saveCodingComment(id: string, codingComment: string): Observable<{ codingComment: string }> {
+    return this.http.patch<{ codingComment: string }>(
+      `${this.baseUrl}/collision/${id}/coding-comment`,
+      { codingComment },
+    );
+  }
 }

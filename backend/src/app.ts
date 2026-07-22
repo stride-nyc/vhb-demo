@@ -24,4 +24,19 @@ app.get('/api/collision/:id', (req: Request, res: Response) => {
   res.json(collision);
 });
 
+app.patch('/api/collision/:id/coding-comment', (req: Request, res: Response) => {
+  const collision = COLLISIONS[req.params.id as string];
+  if (!collision) {
+    res.status(404).json({ error: 'Collision not found' });
+    return;
+  }
+  const { codingComment } = req.body as { codingComment: unknown };
+  if (typeof codingComment !== 'string') {
+    res.status(400).json({ error: 'codingComment must be a string' });
+    return;
+  }
+  collision.codingComment = codingComment;
+  res.json({ codingComment });
+});
+
 export default app;

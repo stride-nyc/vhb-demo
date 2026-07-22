@@ -29,5 +29,6 @@ export interface Collision {
   comment: string;
   additionalPartyCount: number;
   soeComplete: string | null;
+  codingComment?: string;
   parties: Party[];
 }
