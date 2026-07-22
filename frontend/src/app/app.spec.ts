@@ -59,6 +59,12 @@ function makeLeafletMock(): LeafletStatic {
       jasmine.createSpyObj('TileLayer', ['addTo']),
     ),
     marker: jasmine.createSpy('marker').and.returnValue(marker),
+    Icon: {
+      Default: {
+        prototype: {} as Record<string, unknown>,
+        mergeOptions: jasmine.createSpy('mergeOptions'),
+      },
+    },
   } as unknown as LeafletStatic;
 }
 
