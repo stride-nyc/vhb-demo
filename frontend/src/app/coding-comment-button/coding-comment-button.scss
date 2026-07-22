@@ -1,0 +1,94 @@
+.comments-btn {
+  padding: 4px 14px;
+  border-radius: var(--ma-radius-md);
+  border: 1px solid #999;
+  font-size: var(--ma-type-175);
+  font-weight: 600;
+  cursor: pointer;
+  background: #d0d0d0;
+  color: #000;
+  transition: background 0.15s, border-color 0.15s;
+
+  &:hover { background: #bdbdbd; }
+
+  &.comments-btn--has-comment {
+    background: #4caf50;
+    border-color: #388e3c;
+    &:hover { background: #43a047; }
+  }
+}
+
+.comments-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.comments-dialog {
+  background: var(--mat-sys-surface);
+  border-radius: var(--ma-radius-lg);
+  padding: 20px;
+  width: min(480px, 90vw);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+}
+
+.comments-dialog-header {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--mat-sys-on-surface);
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--mat-sys-primary);
+}
+
+.comments-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 10px;
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: var(--ma-radius-md);
+  font-family: inherit;
+  font-size: var(--ma-type-175);
+  resize: vertical;
+  background: var(--mat-sys-surface-container-low);
+  color: var(--mat-sys-on-surface);
+  box-sizing: border-box;
+
+  &:focus {
+    outline: 2px solid var(--mat-sys-primary);
+    outline-offset: -1px;
+  }
+}
+
+.comments-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.btn {
+  padding: 7px 20px;
+  border-radius: var(--ma-radius-md);
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: var(--ma-type-175);
+  font-family: inherit;
+}
+
+.btn--primary {
+  background: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
+}
+
+.btn--secondary {
+  background: var(--mat-sys-surface-container-high);
+  color: var(--mat-sys-on-surface);
+  border: 1px solid var(--mat-sys-outline-variant);
+}
