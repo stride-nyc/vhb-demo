@@ -16,6 +16,14 @@ export class MapComponent implements AfterViewInit, OnDestroy {
   private map!: LeafletMap;
 
   ngAfterViewInit(): void {
+    // Fix default marker icon paths broken by Angular's asset bundler
+    delete (this.L.Icon.Default.prototype as unknown as Record<string, unknown>)['_getIconUrl'];
+    this.L.Icon.Default.mergeOptions({
+      iconUrl:       'assets/marker-icon.png',
+      iconRetinaUrl: 'assets/marker-icon-2x.png',
+      shadowUrl:     'assets/marker-shadow.png',
+    });
+
     this.map = this.L.map(this.mapContainer.nativeElement).setView([36.7783, -119.4179], 6);
 
     this.L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
